@@ -1,0 +1,7 @@
+parameters:
+#    ebene_mvp.example.class: Ebene\MvpBundle\Example
+
+services:
+#    ebene_mvp.example:
+#        class: %ebene_mvp.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

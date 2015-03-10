@@ -1,0 +1,40 @@
+ebene_mvp_restboard:
+    path:     /restboard/{id}
+    defaults: { _controller: EbeneMvpBundle:Default:restboard }
+ebene_mvp_cliboard:
+    path:     /cliboard/{id}
+    defaults: { _controller: EbeneMvpBundle:Default:cliboard }
+EbeneMvpBundle_actionboard:
+    resource: "@EbeneMvpBundle/Resources/config/routing/actionboard.yml"
+    prefix:   /mvp_actionboard
+ebene_mvp_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EbeneMvpBundle:Default:index }
+EbeneMvpBundle_mvp_article:
+    resource: "@EbeneMvpBundle/Resources/config/routing/article.yml"
+    prefix:   /mvp_article
+EbeneMvpBundle_Ebene_commande:
+    resource: "@EbeneMvpBundle/Resources/config/routing/commande.yml"
+    prefix:   /Ebene_commande
+EbeneMvpBundle_mvp_client:
+    resource: "@EbeneMvpBundle/Resources/config/routing/client.yml"
+    prefix:   /mvp_client
+EbeneMvpBundle_mvp_restaurant:
+    resource: "@EbeneMvpBundle/Resources/config/routing/restaurant.yml"
+    prefix:   /mvp_restaurant
+EbeneMvpBundle_mvp_section:
+    resource: "@EbeneMvpBundle/Resources/config/routing/section.yml"
+    prefix:   /mvp_section
+EbeneMvpBundle_mvp_secondaire:
+    resource: "@EbeneMvpBundle/Resources/config/routing/secondaire.yml"
+    prefix:   /mvp_secondaire
+EbeneMvpBundle_mvp_proprietaire:
+    resource: "@EbeneMvpBundle/Resources/config/routing/proprietaire.yml"
+    prefix:   /mvp_proprietaire
+EbeneMvpBundle_mvp_employe:
+    resource: "@EbeneMvpBundle/Resources/config/routing/employe.yml"
+    prefix:   /mvp_employe
+EbeneMvpBundle_mvp_abonnement:
+    resource: "@EbeneMvpBundle/Resources/config/routing/abonnement.yml"
+    prefix:   /mvp_abonnement
+

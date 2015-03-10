@@ -1,0 +1,30 @@
+mvp_secondaire:
+    path:     /
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:index" }
+
+mvp_secondaire_show:
+    path:     /{id}/show
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:show" }
+
+mvp_secondaire_new:
+    path:     /new
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:new" }
+
+mvp_secondaire_create:
+    path:     /create
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:create" }
+    requirements: { _method: post }
+
+mvp_secondaire_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:edit" }
+
+mvp_secondaire_update:
+    path:     /{id}/update
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:update" }
+    requirements: { _method: post|put }
+
+mvp_secondaire_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EbeneMvpBundle:Secondaire:delete" }
+    requirements: { _method: post|delete }

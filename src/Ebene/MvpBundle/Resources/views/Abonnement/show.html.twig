@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Abonnement</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombretag</th>
+                <td>{{ entity.nombretag }}</td>
+            </tr>
+            <tr>
+                <th>Prixtotal</th>
+                <td>{{ entity.prixtotal }}</td>
+            </tr>
+            <tr>
+                <th>Facture</th>
+                <td>{{ entity.facture }}</td>
+            </tr>
+            <tr>
+                <th>Datedeb</th>
+                <td>{{ entity.datedeb|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ entity.datefin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('mvp_abonnement') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('mvp_abonnement_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

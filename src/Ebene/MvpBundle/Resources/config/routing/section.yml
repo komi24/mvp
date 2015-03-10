@@ -1,0 +1,30 @@
+mvp_section:
+    path:     /
+    defaults: { _controller: "EbeneMvpBundle:Section:index" }
+
+mvp_section_show:
+    path:     /{id}/show
+    defaults: { _controller: "EbeneMvpBundle:Section:show" }
+
+mvp_section_new:
+    path:     /new
+    defaults: { _controller: "EbeneMvpBundle:Section:new" }
+
+mvp_section_create:
+    path:     /create
+    defaults: { _controller: "EbeneMvpBundle:Section:create" }
+    requirements: { _method: post }
+
+mvp_section_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EbeneMvpBundle:Section:edit" }
+
+mvp_section_update:
+    path:     /{id}/update
+    defaults: { _controller: "EbeneMvpBundle:Section:update" }
+    requirements: { _method: post|put }
+
+mvp_section_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EbeneMvpBundle:Section:delete" }
+    requirements: { _method: post|delete }
