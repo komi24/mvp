@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     {% stylesheets '@EbeneMvpBundle/Resources/public/css/cli-board/main.css'
     '@EbeneMvpBundle/Resources/public/css/cli-board/bootstrap.css'%}
-  <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <title>{{titre}}</title>
   </head>
   <body>
@@ -16,5 +17,29 @@
               </div>
           </div>
       </nav>
+      <div class="container-fluid">
+          <div class="jumbotron">
+              <h1> {{titre}}</h1>
+              <h4>Commandez avec Ebene</h4>
+          </div>
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Panel title</h3>
+              </div>
+              <div class="panel-body">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3 class="panel-title"> hele </h3>
+                      </div>
+                      <div class="panel-body">
+                          ok
+                      </div>
+                  </div>  
+              </div>
+              <div class="panel-body">
+                  Panel content
+              </div>
+          </div>
+      </div>
   </body>
 </html>
