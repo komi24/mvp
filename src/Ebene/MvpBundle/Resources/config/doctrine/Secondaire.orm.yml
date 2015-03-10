@@ -16,5 +16,5 @@ Ebene\MvpBundle\Entity\Secondaire:
             type: float
     manyToMany:
         listearticles:
-            targetEntity: Articles
+            targetEntity: Article
             mappedBy: listesecondaires

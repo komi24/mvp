@@ -7,7 +7,7 @@ Ebene\MvpBundle\Entity\Abonnement:
             generator: { strategy: AUTO }
     fields:
         nombretag:
-            type: int
+            type: integer
         prixtotal:
             type: float
         facture:
@@ -19,7 +19,7 @@ Ebene\MvpBundle\Entity\Abonnement:
             type: datetime
     manyToOne:
         restaurant:
-            targetEntity: Retaurant
+            targetEntity: Restaurant
             inversedBy: listeabonnements
             joinColumn:
                 name: restaurant_id
