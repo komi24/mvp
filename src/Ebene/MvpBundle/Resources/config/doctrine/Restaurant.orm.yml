@@ -1,6 +1,6 @@
 Ebene\MvpBundle\Entity\Restaurant:
     type: entity
-    table: article
+    table: restaurant
     id:
         id:
             type: integer
@@ -24,7 +24,7 @@ Ebene\MvpBundle\Entity\Restaurant:
     manyToOne:
         proprietaire:
             targetEntity: Proprietaire
-            inversedBy: listerestaurant
+            inversedBy: listerestaurants
             joinColumn:
                 name: proprietaire_id
                 referencedColumnName: id

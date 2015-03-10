@@ -1,6 +1,6 @@
 Ebene\MvpBundle\Entity\Commande:
     type: entity
-    table: article
+    table: commande
     id:
         id:
             type: integer

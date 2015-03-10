@@ -1,9 +1,33 @@
 ## YAML Template.
 Ebene\MvpBundle\Entity\Section:
     type: entity
-    table: article
+    table: section
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
-    fields: 
+    fields:
+        nom:
+            type: string
+            length: 255
+        couleur1:
+            type: string
+            length: 255
+        couleur2:
+            type: string
+            length: 255
+        couleur3:
+            type: string
+            length: 255
+    manyToOne:
+        restaurant:
+            targetEntity: Restaurant
+            inversedBy: listesections
+            joinColumn:
+                name: restaurant_id
+                referencedColumnName: id
+    oneToMany:
+        listearticles:
+            targetEntity: Article
+            mappedBy: section
+        

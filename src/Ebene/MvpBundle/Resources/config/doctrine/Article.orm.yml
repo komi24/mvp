@@ -12,6 +12,8 @@ Ebene\MvpBundle\Entity\Article:
         description:
             type: text
             nullable: true
+        prix:
+            type: float
         photo:
             type: string
             length: 255
@@ -29,7 +31,15 @@ Ebene\MvpBundle\Entity\Article:
             joinColumn:
                 name: section_id
                 referencedColumnName: id
-    oneToMany:
+    manyToMany:
         listesecondaires:
             targetEntity: Secondaire
-            mappedBy: article
+            inversedBy: listearticles
+            joinTable:
+                name: articles_secondaires
+                joinColumns:
+                    articles_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    secondaires_id:
+                        referencedColumnName: id

@@ -1,9 +1,18 @@
-## YAML Template.
 Ebene\MvpBundle\Entity\Client:
     type: entity
-    table: article
+    table: client
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
-    fields: 
+    fields:
+        nom:
+            type: string
+            length: 255
+        mdp:
+            type: string
+            length: 255
+    oneToMany:
+        listecommandes:
+            targetEntity: Commande
+            mappedBy: client

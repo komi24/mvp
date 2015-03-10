@@ -1,2 +1,21 @@
-## YAML Template.
----
+Ebene\MvpBundle\Entity\Employe:
+    type: entity
+    table: employe
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        mdp:
+            type: string
+            length: 255
+    manyToOne:
+        restaurant:
+            targetEntity: Retaurant
+            inversedBy: listeemployes
+            joinColumn:
+                name: restaurant_id
+                referencedColumnName: id

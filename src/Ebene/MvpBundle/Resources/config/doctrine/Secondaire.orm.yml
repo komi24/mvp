@@ -1,7 +1,6 @@
-## YAML Template.
 Ebene\MvpBundle\Entity\Secondaire:
     type: entity
-    table: article
+    table: secondaire
     id:
         id:
             type: integer
@@ -13,23 +12,9 @@ Ebene\MvpBundle\Entity\Secondaire:
         description:
             type: text
             nullable: true
-    manyToOne:
-        proprietaire:
-            targetEntity: Proprietaire
-            inversedBy: listerestaurant
-            joinColumn:
-                name: proprietaire_id
-                referencedColumnName: id
-    oneToMany:
-        listecommandes:
-            targetEntity: Commande
-            mappedBy: restaurant
-        listesections:
-            targetEntity: Section
-            mappedBy: restaurant
-        listeemployes:
-            targetEntity: Employe
-            mappedBy: restaurant
-        listeabonnements:
-            targetEntity: Abonnement
-            mappedBy: restaurant
+        prix:
+            type: float
+    manyToMany:
+        listearticles:
+            targetEntity: Articles
+            mappedBy: listesecondaires

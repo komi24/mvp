@@ -1,9 +1,26 @@
-## YAML Template.
 Ebene\MvpBundle\Entity\Abonnement:
     type: entity
-    table: article
+    table: abonnement
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
-    fields: 
+    fields:
+        nombretag:
+            type: int
+        prixtotal:
+            type: float
+        facture:
+            type: string
+            length: 255
+        datedeb:
+            type: datetime
+        datefin:
+            type: datetime
+    manyToOne:
+        restaurant:
+            targetEntity: Retaurant
+            inversedBy: listeabonnements
+            joinColumn:
+                name: restaurant_id
+                referencedColumnName: id

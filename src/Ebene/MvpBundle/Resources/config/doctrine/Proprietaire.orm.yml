@@ -1,2 +1,23 @@
-## YAML Template.
----
+Ebene\MvpBundle\Entity\Proprietaire:
+    type: entity
+    table: proprietaire
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        mdp:
+            type: string
+            length: 255
+        tel:
+            type: string
+            length: 255
+        adresse:
+            type: text
+    oneToMany:
+        listerestaurants:
+            targetEntity: Restaurant
+            mappedBy: proprietaire
