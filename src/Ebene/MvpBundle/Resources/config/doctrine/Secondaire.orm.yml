@@ -1,0 +1,35 @@
+## YAML Template.
+Ebene\MvpBundle\Entity\Secondaire:
+    type: entity
+    table: article
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        description:
+            type: text
+            nullable: true
+    manyToOne:
+        proprietaire:
+            targetEntity: Proprietaire
+            inversedBy: listerestaurant
+            joinColumn:
+                name: proprietaire_id
+                referencedColumnName: id
+    oneToMany:
+        listecommandes:
+            targetEntity: Commande
+            mappedBy: restaurant
+        listesections:
+            targetEntity: Section
+            mappedBy: restaurant
+        listeemployes:
+            targetEntity: Employe
+            mappedBy: restaurant
+        listeabonnements:
+            targetEntity: Abonnement
+            mappedBy: restaurant

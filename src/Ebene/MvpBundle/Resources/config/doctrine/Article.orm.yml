@@ -1,0 +1,35 @@
+Ebene\MvpBundle\Entity\Article:
+    type: entity
+    table: article
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        description:
+            type: text
+            nullable: true
+        photo:
+            type: string
+            length: 255
+            nullable: true
+    manyToOne:
+        commande:
+            targetEntity: Commande
+            inversedBy: listearticles
+            joinColumn:
+                name: commande_id
+                referencedColumnName: id
+        section:
+            targetEntity: Section
+            inversedBy: listearticles
+            joinColumn:
+                name: section_id
+                referencedColumnName: id
+    oneToMany:
+        listesecondaires:
+            targetEntity: Secondaire
+            mappedBy: article
