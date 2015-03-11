@@ -1,0 +1,3 @@
+mvp_actionboard:
+    path: /
+    defaults: { _controller: "EbeneMvpBundle:Actionboard:index" }
