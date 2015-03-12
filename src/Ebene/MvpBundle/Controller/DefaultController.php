@@ -13,10 +13,10 @@ class DefaultController extends Controller
     
     public function cliboardAction($id)
     {
-        //$em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
  
-        //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
-        $titre = "KebabResto";//$entity->getNom();
+        $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
+        $titre = ($entity == NULL) ? "Restaurant" : $entity->getNom();
  
         return $this->render('EbeneMvpBundle:Default:cliboard.html.twig', 
                 array(

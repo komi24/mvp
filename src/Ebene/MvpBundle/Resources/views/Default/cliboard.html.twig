@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% stylesheets '@EbeneMvpBundle/Resources/public/css/cli-board/bootstrap.css'
         '@EbeneMvpBundle/Resources/public/css/cli-board/main.css'%}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -44,7 +45,7 @@
                           <div class ="description col-xs-12 col-sm-8">
                               <h4 ng-bind="article.description"></h4>
                           </div>
-                          <div class ="prix col-xs-4 col-sm-2">
+                          <div class ="prix col-xs-6 col-sm-4">
                               <div class="well well-sm"> 
                                   <h5> Prix : <span ng-bind="article.prix"></h5>
                               </div>
@@ -56,7 +57,7 @@
                           </div>
                           <script type="text/ng-template" id="myModalContent.html">
                               <div class="modal-header">
-                              <h3 class="modal-title">Commandez</h3>
+                              <h2 class="modal-title">Commandez</h2>
                               </div>
                               <div class="modal-body">
                               <div class="checkbox" ng-repeat="secondaire in article.listesecondaires">
