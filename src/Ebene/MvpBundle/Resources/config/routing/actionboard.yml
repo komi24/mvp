@@ -1,3 +1,6 @@
 mvp_actionboard:
     path: /test
     defaults: { _controller: "EbeneMvpBundle:Actionboard:index" }
+mvp_actionboard_newcom:
+    path: /commande
+    defaults: { _controller: "EbeneMvpBundle:Newcommande:index" }

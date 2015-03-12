@@ -9,6 +9,7 @@
     {% endstylesheets %}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
     {% javascripts '@EbeneMvpBundle/Resources/public/js/cli-board/main.js'
     '@EbeneMvpBundle/Resources/public/js/dbcom.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
@@ -17,14 +18,17 @@
     <title>{{titre}}</title>
   </head>
   <body ng-app="cliapp" ng-controller="boardController" >
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="#">{{titre}}</a>
+              <div class="navbar-header col-xs-6">
+                  <a class="navbar-brand" href="{{ path('ebene_mvp_cliboard',{'id': id}) }}">{{titre}}</a>
+              </div>
+              <div class="col-xs-6">
+                  <ul class="nav navbar-nav navbar-right "><li><a ng-click="openPanier()">Panier</a></li></ul>
               </div>
           </div>
       </nav>
-      <div class="container-fluid" >
+      <div class="container-fluid" id="maincontainer" >
           <div class="jumbotron">
               <h1> {{titre}} </h1>
               <h4>Commandez avec Ebene</h4>
@@ -51,7 +55,7 @@
                               </div>
                           </div>
                           <div class ="col-xs-12 col-sm-12">
-                              <div class="btn btn-primary" ng-click="open()"> 
+                              <div class="btn btn-primary" ng-click="article.open()"> 
                                   Commandez
                               </div>
                           </div>
@@ -67,8 +71,28 @@
                               </div>
                               </div>
                               <div class="modal-footer">
-                              <button class="btn btn-primary" ng-click="ok()">Valider</button>
+                              <button class="btn btn-primary" ng-click="ok()">Ajouter</button>
                               <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+                              </div>
+                          </script>
+                          <script type="text/ng-template" id="myPanierContent.html">
+                              <div class="modal-header">
+                              <h2 class="modal-title">Votre Panier</h2>
+                              </div>
+                              <div class="modal-body">
+                              <form novalidate class="simple-form">
+                                Nom: <input type="text" ng-model="$scope.username" >
+                              </form>
+                              <div class="well" ng-repeat="article in tmppanier">
+                                <h4> {{ '{{ article.nom }}' }} </h4>
+                                <button class="btn btn-warning" ng-click="erase($index)">Suprimer</button>
+                              </div>
+                              </div>
+                              <alert type="warning" ng-show="askName">Nom incorrect ou absent</alert>
+                              <div class="modal-footer">
+                              <button class="btn btn-success" ng-click="commande()">Commander</button>
+                              <button class="btn btn-primary" ng-click="ok()">Valider</button>
+                              <button class="btn btn-warning" ng-click="cancel()">Retour</button>
                               </div>
                           </script>
                       </div>
