@@ -32,17 +32,17 @@ Ebene\MvpBundle\Entity\Commande:
     manyToOne:
         restaurant:
             targetEntity: Restaurant
-            inversedBy: listecommandes
+            inversedBy: commandes
             joinColumn:
                 name: restaurant_id
                 referencedColumnName: id
         client:
             targetEntity: Client
-            inversedBy: listecommandes
+            inversedBy: commandes
             joinColumn:
                 name: client_id
                 referencedColumnName: id
     oneToMany:
-        listearticles:
+        articles:
             targetEntity: Article
             mappedBy: commande

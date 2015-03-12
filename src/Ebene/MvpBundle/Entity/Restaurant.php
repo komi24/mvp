@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Restaurant
  */
-class Restaurant implements \JsonSerializable
+class Restaurant
 {
     /**
      * @var integer
@@ -42,22 +42,22 @@ class Restaurant implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listecommandes;
+    private $commandes;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listesections;
+    private $sections;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listeemployes;
+    private $employes;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listeabonnements;
+    private $abonnements;
 
     /**
      * @var \Ebene\MvpBundle\Entity\Proprietaire
@@ -69,10 +69,10 @@ class Restaurant implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->listecommandes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->listesections = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->listeemployes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->listeabonnements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->abonnements = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -201,135 +201,135 @@ class Restaurant implements \JsonSerializable
     }
 
     /**
-     * Add listecommandes
+     * Add commandes
      *
-     * @param \Ebene\MvpBundle\Entity\Commande $listecommandes
+     * @param \Ebene\MvpBundle\Entity\Commande $commandes
      * @return Restaurant
      */
-    public function addListecommande(\Ebene\MvpBundle\Entity\Commande $listecommandes)
+    public function addCommande(\Ebene\MvpBundle\Entity\Commande $commandes)
     {
-        $this->listecommandes[] = $listecommandes;
+        $this->commandes[] = $commandes;
     
         return $this;
     }
 
     /**
-     * Remove listecommandes
+     * Remove commandes
      *
-     * @param \Ebene\MvpBundle\Entity\Commande $listecommandes
+     * @param \Ebene\MvpBundle\Entity\Commande $commandes
      */
-    public function removeListecommande(\Ebene\MvpBundle\Entity\Commande $listecommandes)
+    public function removeCommande(\Ebene\MvpBundle\Entity\Commande $commandes)
     {
-        $this->listecommandes->removeElement($listecommandes);
+        $this->commandes->removeElement($commandes);
     }
 
     /**
-     * Get listecommandes
+     * Get commandes
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListecommandes()
+    public function getCommandes()
     {
-        return $this->listecommandes;
+        return $this->commandes;
     }
 
     /**
-     * Add listesections
+     * Add sections
      *
-     * @param \Ebene\MvpBundle\Entity\Section $listesections
+     * @param \Ebene\MvpBundle\Entity\Section $sections
      * @return Restaurant
      */
-    public function addListesection(\Ebene\MvpBundle\Entity\Section $listesections)
+    public function addSection(\Ebene\MvpBundle\Entity\Section $sections)
     {
-        $this->listesections[] = $listesections;
+        $this->sections[] = $sections;
     
         return $this;
     }
 
     /**
-     * Remove listesections
+     * Remove sections
      *
-     * @param \Ebene\MvpBundle\Entity\Section $listesections
+     * @param \Ebene\MvpBundle\Entity\Section $sections
      */
-    public function removeListesection(\Ebene\MvpBundle\Entity\Section $listesections)
+    public function removeSection(\Ebene\MvpBundle\Entity\Section $sections)
     {
-        $this->listesections->removeElement($listesections);
+        $this->sections->removeElement($sections);
     }
 
     /**
-     * Get listesections
+     * Get sections
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListesections()
+    public function getSections()
     {
-        return $this->listesections;
+        return $this->sections;
     }
 
     /**
-     * Add listeemployes
+     * Add employes
      *
-     * @param \Ebene\MvpBundle\Entity\Employe $listeemployes
+     * @param \Ebene\MvpBundle\Entity\Employe $employes
      * @return Restaurant
      */
-    public function addListeemploye(\Ebene\MvpBundle\Entity\Employe $listeemployes)
+    public function addEmploye(\Ebene\MvpBundle\Entity\Employe $employes)
     {
-        $this->listeemployes[] = $listeemployes;
+        $this->employes[] = $employes;
     
         return $this;
     }
 
     /**
-     * Remove listeemployes
+     * Remove employes
      *
-     * @param \Ebene\MvpBundle\Entity\Employe $listeemployes
+     * @param \Ebene\MvpBundle\Entity\Employe $employes
      */
-    public function removeListeemploye(\Ebene\MvpBundle\Entity\Employe $listeemployes)
+    public function removeEmploye(\Ebene\MvpBundle\Entity\Employe $employes)
     {
-        $this->listeemployes->removeElement($listeemployes);
+        $this->employes->removeElement($employes);
     }
 
     /**
-     * Get listeemployes
+     * Get employes
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListeemployes()
+    public function getEmployes()
     {
-        return $this->listeemployes;
+        return $this->employes;
     }
 
     /**
-     * Add listeabonnements
+     * Add abonnements
      *
-     * @param \Ebene\MvpBundle\Entity\Abonnement $listeabonnements
+     * @param \Ebene\MvpBundle\Entity\Abonnement $abonnements
      * @return Restaurant
      */
-    public function addListeabonnement(\Ebene\MvpBundle\Entity\Abonnement $listeabonnements)
+    public function addAbonnement(\Ebene\MvpBundle\Entity\Abonnement $abonnements)
     {
-        $this->listeabonnements[] = $listeabonnements;
+        $this->abonnements[] = $abonnements;
     
         return $this;
     }
 
     /**
-     * Remove listeabonnements
+     * Remove abonnements
      *
-     * @param \Ebene\MvpBundle\Entity\Abonnement $listeabonnements
+     * @param \Ebene\MvpBundle\Entity\Abonnement $abonnements
      */
-    public function removeListeabonnement(\Ebene\MvpBundle\Entity\Abonnement $listeabonnements)
+    public function removeAbonnement(\Ebene\MvpBundle\Entity\Abonnement $abonnements)
     {
-        $this->listeabonnements->removeElement($listeabonnements);
+        $this->abonnements->removeElement($abonnements);
     }
 
     /**
-     * Get listeabonnements
+     * Get abonnements
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListeabonnements()
+    public function getAbonnements()
     {
-        return $this->listeabonnements;
+        return $this->abonnements;
     }
 
     /**
@@ -354,16 +354,6 @@ class Restaurant implements \JsonSerializable
     {
         return $this->proprietaire;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(
-                array(
-                    "id" => $this->id,
-                    "nom" => $this->nom,
-                    "datexp" => $this->dateexp,
-                ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }

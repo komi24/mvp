@@ -13,6 +13,6 @@ Ebene\MvpBundle\Entity\Client:
             type: string
             length: 255
     oneToMany:
-        listecommandes:
+        commandes:
             targetEntity: Commande
             mappedBy: client

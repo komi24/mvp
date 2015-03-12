@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  */
-class Article implements \JsonSerializable
+class Article
 {
     /**
      * @var integer
@@ -47,14 +47,14 @@ class Article implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listesecondaires;
+    private $secondaires;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->listesecondaires = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->secondaires = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -206,50 +206,39 @@ class Article implements \JsonSerializable
     }
 
     /**
-     * Add listesecondaires
+     * Add secondaires
      *
-     * @param \Ebene\MvpBundle\Entity\Secondaire $listesecondaires
+     * @param \Ebene\MvpBundle\Entity\Secondaire $secondaires
      * @return Article
      */
-    public function addListesecondaire(\Ebene\MvpBundle\Entity\Secondaire $listesecondaires)
+    public function addSecondaire(\Ebene\MvpBundle\Entity\Secondaire $secondaires)
     {
-        $this->listesecondaires[] = $listesecondaires;
+        $this->secondaires[] = $secondaires;
     
         return $this;
     }
 
     /**
-     * Remove listesecondaires
+     * Remove secondaires
      *
-     * @param \Ebene\MvpBundle\Entity\Secondaire $listesecondaires
+     * @param \Ebene\MvpBundle\Entity\Secondaire $secondaires
      */
-    public function removeListesecondaire(\Ebene\MvpBundle\Entity\Secondaire $listesecondaires)
+    public function removeSecondaire(\Ebene\MvpBundle\Entity\Secondaire $secondaires)
     {
-        $this->listesecondaires->removeElement($listesecondaires);
+        $this->secondaires->removeElement($secondaires);
     }
 
     /**
-     * Get listesecondaires
+     * Get secondaires
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListesecondaires()
+    public function getSecondaires()
     {
-        return $this->listesecondaires;
+        return $this->secondaires;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(
-                array(
-                    "id" => $this->id,
-                    "nom" => $this->nom,
-                    "description" => $this->description,
-                    "prix" => $this->prix,
-                    "photo" => $this->photo,
-                ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }
+
 }

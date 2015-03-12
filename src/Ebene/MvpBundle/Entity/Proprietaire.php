@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Proprietaire
  */
-class Proprietaire implements \JsonSerializable
+class Proprietaire
 {
     /**
      * @var integer
@@ -37,14 +37,14 @@ class Proprietaire implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listerestaurants;
+    private $restaurants;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->listerestaurants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->restaurants = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -150,50 +150,39 @@ class Proprietaire implements \JsonSerializable
     }
 
     /**
-     * Add listerestaurants
+     * Add restaurants
      *
-     * @param \Ebene\MvpBundle\Entity\Restaurant $listerestaurants
+     * @param \Ebene\MvpBundle\Entity\Restaurant $restaurants
      * @return Proprietaire
      */
-    public function addListerestaurant(\Ebene\MvpBundle\Entity\Restaurant $listerestaurants)
+    public function addRestaurant(\Ebene\MvpBundle\Entity\Restaurant $restaurants)
     {
-        $this->listerestaurants[] = $listerestaurants;
+        $this->restaurants[] = $restaurants;
     
         return $this;
     }
 
     /**
-     * Remove listerestaurants
+     * Remove restaurants
      *
-     * @param \Ebene\MvpBundle\Entity\Restaurant $listerestaurants
+     * @param \Ebene\MvpBundle\Entity\Restaurant $restaurants
      */
-    public function removeListerestaurant(\Ebene\MvpBundle\Entity\Restaurant $listerestaurants)
+    public function removeRestaurant(\Ebene\MvpBundle\Entity\Restaurant $restaurants)
     {
-        $this->listerestaurants->removeElement($listerestaurants);
+        $this->restaurants->removeElement($restaurants);
     }
 
     /**
-     * Get listerestaurants
+     * Get restaurants
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListerestaurants()
+    public function getRestaurants()
     {
-        return $this->listerestaurants;
+        return $this->restaurants;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(
-                array(
-                    "id" => $this->id,
-                    "nom" => $this->nom,
-                    "mdp" => $this->mdp,
-                    "tel" => $this->tel,
-                    "adresse" => $this->adresse, 
-                ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }
+
 }

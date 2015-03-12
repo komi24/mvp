@@ -21,12 +21,12 @@ Ebene\MvpBundle\Entity\Section:
     manyToOne:
         restaurant:
             targetEntity: Restaurant
-            inversedBy: listesections
+            inversedBy: sections
             joinColumn:
                 name: restaurant_id
                 referencedColumnName: id
     oneToMany:
-        listearticles:
+        articles:
             targetEntity: Article
             mappedBy: section
         

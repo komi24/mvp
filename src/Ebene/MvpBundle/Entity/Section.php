@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Section
  */
-class Section implements \JsonSerializable
+class Section
 {
     /**
      * @var integer
@@ -37,7 +37,7 @@ class Section implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listearticles;
+    private $articles;
 
     /**
      * @var \Ebene\MvpBundle\Entity\Restaurant
@@ -49,7 +49,7 @@ class Section implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->listearticles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -155,36 +155,36 @@ class Section implements \JsonSerializable
     }
 
     /**
-     * Add listearticles
+     * Add articles
      *
-     * @param \Ebene\MvpBundle\Entity\Article $listearticles
+     * @param \Ebene\MvpBundle\Entity\Article $articles
      * @return Section
      */
-    public function addListearticle(\Ebene\MvpBundle\Entity\Article $listearticles)
+    public function addArticle(\Ebene\MvpBundle\Entity\Article $articles)
     {
-        $this->listearticles[] = $listearticles;
+        $this->articles[] = $articles;
     
         return $this;
     }
 
     /**
-     * Remove listearticles
+     * Remove articles
      *
-     * @param \Ebene\MvpBundle\Entity\Article $listearticles
+     * @param \Ebene\MvpBundle\Entity\Article $articles
      */
-    public function removeListearticle(\Ebene\MvpBundle\Entity\Article $listearticles)
+    public function removeArticle(\Ebene\MvpBundle\Entity\Article $articles)
     {
-        $this->listearticles->removeElement($listearticles);
+        $this->articles->removeElement($articles);
     }
 
     /**
-     * Get listearticles
+     * Get articles
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListearticles()
+    public function getArticles()
     {
-        return $this->listearticles;
+        return $this->articles;
     }
 
     /**
@@ -209,14 +209,6 @@ class Section implements \JsonSerializable
     {
         return $this->restaurant;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(array(
-            "id" => $this->id,
-            "nom" => $this->nom,
-        ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }

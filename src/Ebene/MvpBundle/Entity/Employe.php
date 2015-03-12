@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Employe
  */
-class Employe implements \JsonSerializable
+class Employe
 {
     /**
      * @var integer
@@ -25,7 +25,7 @@ class Employe implements \JsonSerializable
     private $mdp;
 
     /**
-     * @var \Ebene\MvpBundle\Entity\Retaurant
+     * @var \Ebene\MvpBundle\Entity\Restaurant
      */
     private $restaurant;
 
@@ -89,10 +89,10 @@ class Employe implements \JsonSerializable
     /**
      * Set restaurant
      *
-     * @param \Ebene\MvpBundle\Entity\Retaurant $restaurant
+     * @param \Ebene\MvpBundle\Entity\Restaurant $restaurant
      * @return Employe
      */
-    public function setRestaurant(\Ebene\MvpBundle\Entity\Retaurant $restaurant = null)
+    public function setRestaurant(\Ebene\MvpBundle\Entity\Restaurant $restaurant = null)
     {
         $this->restaurant = $restaurant;
     
@@ -102,25 +102,14 @@ class Employe implements \JsonSerializable
     /**
      * Get restaurant
      *
-     * @return \Ebene\MvpBundle\Entity\Retaurant 
+     * @return \Ebene\MvpBundle\Entity\Restaurant 
      */
     public function getRestaurant()
     {
         return $this->restaurant;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(
-                array(
-                    "id" => $this->id,
-                    "nom" => $this->nom,
-                    "mdp" => $this->mdp,
-                ));
-    }
-    
-
-    
     public function __toString() {
         return $this->getNom();
     }
+
 }

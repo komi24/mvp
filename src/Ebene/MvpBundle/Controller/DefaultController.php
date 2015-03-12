@@ -38,4 +38,5 @@ class DefaultController extends Controller
                     'titre' => $titre
                     ));
     }
+
 }

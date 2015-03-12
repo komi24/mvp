@@ -24,20 +24,20 @@ Ebene\MvpBundle\Entity\Restaurant:
     manyToOne:
         proprietaire:
             targetEntity: Proprietaire
-            inversedBy: listerestaurants
+            inversedBy: restaurants
             joinColumn:
                 name: proprietaire_id
                 referencedColumnName: id
     oneToMany:
-        listecommandes:
+        commandes:
             targetEntity: Commande
             mappedBy: restaurant
-        listesections:
+        sections:
             targetEntity: Section
             mappedBy: restaurant
-        listeemployes:
+        employes:
             targetEntity: Employe
             mappedBy: restaurant
-        listeabonnements:
+        abonnements:
             targetEntity: Abonnement
             mappedBy: restaurant

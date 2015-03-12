@@ -21,20 +21,20 @@ Ebene\MvpBundle\Entity\Article:
     manyToOne:
         commande:
             targetEntity: Commande
-            inversedBy: listearticles
+            inversedBy: articles
             joinColumn:
                 name: commande_id
                 referencedColumnName: id
         section:
             targetEntity: Section
-            inversedBy: listearticles
+            inversedBy: articles
             joinColumn:
                 name: section_id
                 referencedColumnName: id
     manyToMany:
-        listesecondaires:
+        secondaires:
             targetEntity: Secondaire
-            inversedBy: listearticles
+            inversedBy: articles
             joinTable:
                 name: articles_secondaires
                 joinColumns:

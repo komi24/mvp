@@ -20,7 +20,7 @@ Ebene\MvpBundle\Entity\Abonnement:
     manyToOne:
         restaurant:
             targetEntity: Restaurant
-            inversedBy: listeabonnements
+            inversedBy: abonnements
             joinColumn:
                 name: restaurant_id
                 referencedColumnName: id

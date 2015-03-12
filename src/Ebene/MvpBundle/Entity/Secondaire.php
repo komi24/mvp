@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Secondaire
  */
-class Secondaire implements \JsonSerializable
+class Secondaire
 {
     /**
      * @var integer
@@ -32,14 +32,14 @@ class Secondaire implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listearticles;
+    private $articles;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->listearticles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -122,47 +122,37 @@ class Secondaire implements \JsonSerializable
     }
 
     /**
-     * Add listearticles
+     * Add articles
      *
-     * @param \Ebene\MvpBundle\Entity\Articles $listearticles
+     * @param \Ebene\MvpBundle\Entity\Article $articles
      * @return Secondaire
      */
-    public function addListearticle(\Ebene\MvpBundle\Entity\Articles $listearticles)
+    public function addArticle(\Ebene\MvpBundle\Entity\Article $articles)
     {
-        $this->listearticles[] = $listearticles;
+        $this->articles[] = $articles;
     
         return $this;
     }
 
     /**
-     * Remove listearticles
+     * Remove articles
      *
-     * @param \Ebene\MvpBundle\Entity\Articles $listearticles
+     * @param \Ebene\MvpBundle\Entity\Article $articles
      */
-    public function removeListearticle(\Ebene\MvpBundle\Entity\Articles $listearticles)
+    public function removeArticle(\Ebene\MvpBundle\Entity\Article $articles)
     {
-        $this->listearticles->removeElement($listearticles);
+        $this->articles->removeElement($articles);
     }
 
     /**
-     * Get listearticles
+     * Get articles
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListearticles()
+    public function getArticles()
     {
-        return $this->listearticles;
+        return $this->articles;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(array(
-            "id" => $this->id,
-            "nom" => $this->nom,
-            "description" => $this->description,
-            "prix" => $this->prix,
-        ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }

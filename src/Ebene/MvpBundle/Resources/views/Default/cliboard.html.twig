@@ -2,18 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    {% stylesheets '@EbeneMvpBundle/Resources/public/css/cli-board/main.css'
-    '@EbeneMvpBundle/Resources/public/css/cli-board/bootstrap.css'%}
+    {% stylesheets '@EbeneMvpBundle/Resources/public/css/cli-board/bootstrap.css'
+        '@EbeneMvpBundle/Resources/public/css/cli-board/main.css'%}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
     {% javascripts '@EbeneMvpBundle/Resources/public/js/cli-board/main.js'
     '@EbeneMvpBundle/Resources/public/js/dbcom.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
+    <script type="text/javascript"> var id = {{id}}</script>
     <title>{{titre}}</title>
   </head>
-  <body ng-app="cliapp" ng-controller="boardController">
+  <body ng-app="cliapp" ng-controller="boardController" >
       <nav class="navbar navbar-default">
           <div class="container-fluid">
               <div class="navbar-header">
@@ -27,23 +29,51 @@
               <h4>Commandez avec Ebene</h4>
           </div>
           <div ng-repeat="section in sections" class="panel panel-default">
-              <div class="panel-heading"> 
+              <div class="panel-heading" ng-click="section.showPannel = ! section.showPannel"> 
                   <h3 class="panel-title" ng-bind="section.nom"></h3>
               </div>
-              <div class="panel-body">
-                  <div class="panel panel-default">
-                      <div class="panel-heading">
-                          <h3 class="panel-title"> hele </h3>
+              <div class="panel-body" ng-show="section.showPannel">
+                  <div ng-repeat="article in section.listearticles" class="panel panel-default">
+                      <div class="panel-heading"  ng-click="article.showPannel = ! article.showPannel">
+                          <h3 class="panel-title" ng-bind="article.nom"> </h3>
                       </div>
-                      <div class="panel-body">
-                          ok
+                      <div class="panel-body" ng-show="article.showPannel">
+                          <div class ="col-xs-6 col-sm-4">
+                              <img src="{{ '{{ article.photo }}' }}" class="img-responsive img-thumbnail" alt=""/>
+                          </div>
+                          <div class ="description col-xs-12 col-sm-8">
+                              <h4 ng-bind="article.description"></h4>
+                          </div>
+                          <div class ="prix col-xs-4 col-sm-2">
+                              <div class="well well-sm"> 
+                                  <h5> Prix : <span ng-bind="article.prix"></h5>
+                              </div>
+                          </div>
+                          <div class ="col-xs-12 col-sm-12">
+                              <div class="btn btn-primary" ng-click="open()"> 
+                                  Commandez
+                              </div>
+                          </div>
+                          <script type="text/ng-template" id="myModalContent.html">
+                              <div class="modal-header">
+                              <h3 class="modal-title">Commandez</h3>
+                              </div>
+                              <div class="modal-body">
+                              <div class="checkbox" ng-repeat="secondaire in article.listesecondaires">
+                              <label>
+                                <input type="checkbox"/> {{ '{{ secondaire.nom }}' }}
+                              </label>
+                              </div>
+                              </div>
+                              <div class="modal-footer">
+                              <button class="btn btn-primary" ng-click="ok()">Valider</button>
+                              <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+                              </div>
+                          </script>
                       </div>
-                  </div>  
+                  </div> {# repeat articles #}
               </div>
-              <div class="panel-body">
-                  Panel content
-              </div>
-          </div>
+          </div> {# repeat sections #}
       </div>
   </body>
 </html>

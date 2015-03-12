@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  */
-class Client implements \JsonSerializable
+class Client
 {
     /**
      * @var integer
@@ -27,14 +27,14 @@ class Client implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $listecommandes;
+    private $commandes;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->listecommandes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -94,48 +94,39 @@ class Client implements \JsonSerializable
     }
 
     /**
-     * Add listecommandes
+     * Add commandes
      *
-     * @param \Ebene\MvpBundle\Entity\Commande $listecommandes
+     * @param \Ebene\MvpBundle\Entity\Commande $commandes
      * @return Client
      */
-    public function addListecommande(\Ebene\MvpBundle\Entity\Commande $listecommandes)
+    public function addCommande(\Ebene\MvpBundle\Entity\Commande $commandes)
     {
-        $this->listecommandes[] = $listecommandes;
+        $this->commandes[] = $commandes;
     
         return $this;
     }
 
     /**
-     * Remove listecommandes
+     * Remove commandes
      *
-     * @param \Ebene\MvpBundle\Entity\Commande $listecommandes
+     * @param \Ebene\MvpBundle\Entity\Commande $commandes
      */
-    public function removeListecommande(\Ebene\MvpBundle\Entity\Commande $listecommandes)
+    public function removeCommande(\Ebene\MvpBundle\Entity\Commande $commandes)
     {
-        $this->listecommandes->removeElement($listecommandes);
+        $this->commandes->removeElement($commandes);
     }
 
     /**
-     * Get listecommandes
+     * Get commandes
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getListecommandes()
+    public function getCommandes()
     {
-        return $this->listecommandes;
+        return $this->commandes;
     }
-    
-    public function jsonSerialize() {
-        return json_encode(
-                array(
-                    "id" => $this->id,
-                    "nom" => $this->nom,
-                    "mdp" => $this->mdp,
-                ));
-    }
-    
     public function __toString() {
         return $this->getNom();
     }
+
 }

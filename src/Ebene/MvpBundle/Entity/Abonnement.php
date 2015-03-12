@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Abonnement
  */
-class Abonnement implements \JsonSerializable
+class Abonnement
 {
     /**
      * @var integer
@@ -15,7 +15,7 @@ class Abonnement implements \JsonSerializable
     private $id;
 
     /**
-     * @var int
+     * @var integer
      */
     private $nombretag;
 
@@ -40,7 +40,7 @@ class Abonnement implements \JsonSerializable
     private $datefin;
 
     /**
-     * @var \Ebene\MvpBundle\Entity\Retaurant
+     * @var \Ebene\MvpBundle\Entity\Restaurant
      */
     private $restaurant;
 
@@ -58,10 +58,10 @@ class Abonnement implements \JsonSerializable
     /**
      * Set nombretag
      *
-     * @param \int $nombretag
+     * @param integer $nombretag
      * @return Abonnement
      */
-    public function setNombretag(\int $nombretag)
+    public function setNombretag($nombretag)
     {
         $this->nombretag = $nombretag;
     
@@ -71,7 +71,7 @@ class Abonnement implements \JsonSerializable
     /**
      * Get nombretag
      *
-     * @return \int 
+     * @return integer 
      */
     public function getNombretag()
     {
@@ -173,10 +173,10 @@ class Abonnement implements \JsonSerializable
     /**
      * Set restaurant
      *
-     * @param \Ebene\MvpBundle\Entity\Retaurant $restaurant
+     * @param \Ebene\MvpBundle\Entity\Restaurant $restaurant
      * @return Abonnement
      */
-    public function setRestaurant(\Ebene\MvpBundle\Entity\Retaurant $restaurant = null)
+    public function setRestaurant(\Ebene\MvpBundle\Entity\Restaurant $restaurant = null)
     {
         $this->restaurant = $restaurant;
     
@@ -186,24 +186,15 @@ class Abonnement implements \JsonSerializable
     /**
      * Get restaurant
      *
-     * @return \Ebene\MvpBundle\Entity\Retaurant 
+     * @return \Ebene\MvpBundle\Entity\Restaurant 
      */
     public function getRestaurant()
     {
         return $this->restaurant;
     }
     
-    public function jsonSerialize() {
-        return json_encode(array(
-            "id" => $this->id,
-            "prixtotal" => $this->prixtotal,
-            "facture" => $this->facture,
-            "datedeb" => $this->datedeb,
-            "datefin" => $this->datefin,
-        ));
-    }
-    
     public function __toString() {
         return "Facture".$this->getId();
     }
+
 }

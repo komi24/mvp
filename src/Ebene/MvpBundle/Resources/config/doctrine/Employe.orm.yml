@@ -15,7 +15,7 @@ Ebene\MvpBundle\Entity\Employe:
     manyToOne:
         restaurant:
             targetEntity: Restaurant
-            inversedBy: listeemployes
+            inversedBy: employes
             joinColumn:
                 name: restaurant_id
                 referencedColumnName: id
