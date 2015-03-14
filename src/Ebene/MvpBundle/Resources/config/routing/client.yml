@@ -1,0 +1,30 @@
+mvp_client:
+    path:     /
+    defaults: { _controller: "EbeneMvpBundle:Client:index" }
+
+mvp_client_show:
+    path:     /{id}/show
+    defaults: { _controller: "EbeneMvpBundle:Client:show" }
+
+mvp_client_new:
+    path:     /new
+    defaults: { _controller: "EbeneMvpBundle:Client:new" }
+
+mvp_client_create:
+    path:     /create
+    defaults: { _controller: "EbeneMvpBundle:Client:create" }
+    requirements: { _method: post }
+
+mvp_client_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EbeneMvpBundle:Client:edit" }
+
+mvp_client_update:
+    path:     /{id}/update
+    defaults: { _controller: "EbeneMvpBundle:Client:update" }
+    requirements: { _method: post|put }
+
+mvp_client_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EbeneMvpBundle:Client:delete" }
+    requirements: { _method: post|delete }

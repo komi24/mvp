@@ -1,0 +1,30 @@
+mvp_restaurant:
+    path:     /
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:index" }
+
+mvp_restaurant_show:
+    path:     /{id}/show
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:show" }
+
+mvp_restaurant_new:
+    path:     /new
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:new" }
+
+mvp_restaurant_create:
+    path:     /create
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:create" }
+    requirements: { _method: post }
+
+mvp_restaurant_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:edit" }
+
+mvp_restaurant_update:
+    path:     /{id}/update
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:update" }
+    requirements: { _method: post|put }
+
+mvp_restaurant_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EbeneMvpBundle:Restaurant:delete" }
+    requirements: { _method: post|delete }

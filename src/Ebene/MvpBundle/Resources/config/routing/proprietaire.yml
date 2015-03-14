@@ -1,0 +1,30 @@
+mvp_proprietaire:
+    path:     /
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:index" }
+
+mvp_proprietaire_show:
+    path:     /{id}/show
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:show" }
+
+mvp_proprietaire_new:
+    path:     /new
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:new" }
+
+mvp_proprietaire_create:
+    path:     /create
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:create" }
+    requirements: { _method: post }
+
+mvp_proprietaire_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:edit" }
+
+mvp_proprietaire_update:
+    path:     /{id}/update
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:update" }
+    requirements: { _method: post|put }
+
+mvp_proprietaire_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EbeneMvpBundle:Proprietaire:delete" }
+    requirements: { _method: post|delete }
