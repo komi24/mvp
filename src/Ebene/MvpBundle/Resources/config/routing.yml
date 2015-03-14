@@ -7,6 +7,9 @@ ebene_mvp_cliboard:
 EbeneMvpBundle_actionboard:
     resource: "@EbeneMvpBundle/Resources/config/routing/actionboard.yml"
     prefix:   /mvp_actionboard
+EbeneMvpBundle_restboard:
+    resource: "@EbeneMvpBundle/Resources/config/routing/restboard.yml"
+    prefix:   /mvp_restboard
 ebene_mvp_homepage:
     path:     /hello/{name}
     defaults: { _controller: EbeneMvpBundle:Default:index }

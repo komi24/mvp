@@ -2,19 +2,49 @@
 <html>
   <head>
     <meta charset="utf-8">
-    {% stylesheets '@EbeneMvpBundle/Resources/public/css/rest_board/main.css'
-    '@EbeneMvpBundle/Resources/public/css/rest_board/bootstrap.css'%}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% stylesheets '@EbeneMvpBundle/Resources/public/css/rest_board/bootstrap.css'
+        '@EbeneMvpBundle/Resources/public/css/rest_board/main.css'%}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    {% javascripts '@EbeneMvpBundle/Resources/public/js/rest_board/main.js'
+    '@EbeneMvpBundle/Resources/public/js/dbcom.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script type="text/javascript"> var id = {{id}};</script>
     <title>{{titre}}</title>
   </head>
-  <body>
-      <nav class="navbar navbar-default">
+  <body ng-app="restapp" ng-controller="restController" >
+      <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="#">{{titre}}</a>
+              <div class="navbar-header col-xs-6">
+                  <a class="navbar-brand" href="{{ path('ebene_mvp_restboard',{'id': id}) }}">{{titre}}</a>
               </div>
           </div>
       </nav>
+      <div class="container-fluid" id="maincontainer" >
+          <div class="jumbotron">
+              <h1> {{titre}} </h1>
+              <h4>Commande en cours</h4>
+          </div>
+          <div ng-repeat="commande in commandes" class="panel panel-{{'{{ commande | etat : affichage }}'}}" ng-show=' {{ ' {{commande | etat : \"visi\" }} ' }} '>
+              <div class="panel-heading" ng-click="commande.showPannel = ! commande.showPannel"> 
+                  <h3 class="panel-title" >Commande {{'{{ commande.id }}'}} pour {{'{{ commande.client }}'}} {{'{{commande | etat : \'etat\'}}'}}</h3>
+              </div>
+              <div class="panel-body"> {# ng-show="commande.showPannel">#}
+                  <div class="btn-group btn-group-justified">
+                      <div class="btn btn-info" ng-click='prec(commande.id)'>Prec</div>
+                      <div class="btn btn-success" ng-click='suiv(commande.id)'>Suiv</div>
+                  </div>
+                  <div ng-repeat="article in commande.articles">
+                      <div class="well"><h3 class="panel-title" ng-bind="article.nom"> </h3></div>
+                          <div ng-repeat="secondaire in article.secondaires">
+                              <h4>{{'{{secondaire.nom}}'}}</h4>
+                          </div>
+                  </div> {# repeat articles #}
+              </div>
+          </div> {# repeat sections #}
+      </div>
   </body>
 </html>

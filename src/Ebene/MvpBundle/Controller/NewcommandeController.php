@@ -6,106 +6,100 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Ebene\MvpBundle\Entity\Section;
+use Ebene\MvpBundle\Entity\Client;
+use Ebene\MvpBundle\Entity\Commande;
+use Ebene\MvpBundle\Entity\Secondaire;
+use Ebene\MvpBundle\Entity\Article;
 
 
 class NewcommandeController extends Controller
 {
     public function indexAction()
     {
-        /*$params = array();
+        $logger = $this->get('logger');
+        $params = array();
         $content = $this->get("request")->getContent();
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
-        if($params['type'] == 'sections')
+        if($params['user'] == 0)
         {
-            $em = $this->getDoctrine()->getEntityManager();
+            $logger->info('ok');
+            /*$em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($params['id']);
-
             $reponse = new JsonResponse();
-            $reponse->setData($this->getSections($entity));
-        }*/
-        return new JsonResponse();//$reponse;
+            $reponse->setData($this->getSections($entity));*/
+            
+            //New user
+            $params['user'] = $this->newUser($params['content']['username']);
+        }
+        if (sizeof($params['content']['contentres']) > 0) {
+            //New commande
+            $this->newCommande($params);
+        }
+        $logger->info("fin");
+        $logger->info(sizeof($params));
+        return new JsonResponse(array("user" => $params['user']));//$reponse;
     }
     
-    public function getSections($restaurant) {
-        $res = array();
-        
-        if($restaurant == NULL) return $res;
+    public function newCommande($content) {
+        $logger = $this->get('logger');
 
-        foreach ($restaurant->getSections()->toArray() as $cur) {
-            array_push($res, array(
-                "nom" => $cur->getNom(), 
-                "id" => $cur->getId(),
-                "listearticles" => $this->getArticles($cur)
-                ));
-        }
-        return $res;
-    }
-
-    public function getArticles($entity) {
-        $res = array();
-
-        if($entity == NULL) return $res;
-        
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('EbeneMvpBundle:Section')->find($entity->getId());//$params[id]);
-
-        foreach ($entity->getArticles()->toArray() as $cur) {
-            array_push($res, array(
-                "nom" => $cur->getNom(), 
-                "id" => $cur->getId(),
-                "prix" => $cur->getPrix(),
-                "photo" => $cur->getPhoto(),
-                "description" => $cur->getDescription(),
-                "listesecondaires" => $this->getSecondaires($cur)
-                ));
+        // Trouver le client
+        $cli = $em->getRepository('EbeneMvpBundle:Client')->find($content['user']);
+        $cli->setNom($content['content']['username']);
+        // Trouver le restaurant
+        $rest = $em->getRepository('EbeneMvpBundle:Restaurant')->find($content['id']);
+        // Creer commande
+        $commande = new Commande();
+        //TODO gérer les couleurs et le prix
+        $commande->setCouleurrestaurant("bleu");
+        $commande->setCouleursection("bleu");
+        $commande->setPrix(0);
+        $commande->setClient($cli);
+        
+        //TODO gérer les dates avec desirée
+        $commande->setDatecom(new \DateTime);
+        $cli->addCommande($commande);
+        $commande->setRestaurant($rest);
+        $rest->addCommande($commande);
+        // Pour chaque article trouver secondaire, créer article 
+        // et lier avec secondaire et commande
+        foreach ($content["content"]["contentres"] as $article) {
+            $newArticle = new Article();
+            $newArticle->setCommande($commande);
+            $newArticle->setNom($article["nom"]);
+            $newArticle->setPrix($article["prix"]);
+            foreach ($article["listesecondaires"] as $secondaire) {
+                $logger->info('bouclesec');
+                if(array_key_exists("asked", $secondaire)){
+                    if ($secondaire['asked']) {
+                        $logger->info('asked boucle');
+                        $secondcurr = $em->getRepository('EbeneMvpBundle:Secondaire')
+                                ->find($secondaire['id']);
+                        $newArticle->addSecondaire($secondcurr);
+                        $secondcurr->addArticle($newArticle);
+                        $em->persist($secondcurr);
+                    }
+                }
+            }
+            $em->persist($newArticle);
         }
-        return $res;
-    }
-    public function getSecondaires($entity) {
-        $res = array();
-        if($entity == NULL) return $res;
-        $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('EbeneMvpBundle:Article')->find($entity->getId());//$params[id]);
-
-        foreach ($entity->getSecondaires() as $cur) {
-            array_push($res, array(
-                "nom" => $cur->getNom(),
-                "id" => $cur->getId(),
-                "prix" => $cur->getPrix(),
-                "description" => $cur->getDescription()
-            ));
-        }
-        return $res;
+        // Persist et flush
+        $em->persist($cli);
+        $em->persist($rest);
+        $em->persist($commande);
+        $em->flush();
     }
     
-    public function cliboardAction($id)
-    {
-        //$em = $this->getDoctrine()->getEntityManager();
- 
-        //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
-        $titre = "KebabResto";//$entity->getNom();
- 
-        return $this->render('EbeneMvpBundle:Default:cliboard.html.twig', 
-                array(
-                    'id' => $id,
-                    'titre' => $titre
-                    ));
-    }
-
-    public function restboardAction($id)
-    {
-        //$em = $this->getDoctrine()->getEntityManager();
- 
-        //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
-        $titre = "KebabResto";//$entity->getNom();
- 
-        return $this->render('EbeneMvpBundle:Default:restboard.html.twig', 
-                array(
-                    'id' => $id,
-                    'titre' => $titre
-                    ));
+    public function newUser($nom) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $cli = new Client();
+        $cli->setNom($nom);
+        $cli->setMdp("0000");
+        $em->persist($cli);
+        $em->flush();
+        return $cli->getId();
     }
 }

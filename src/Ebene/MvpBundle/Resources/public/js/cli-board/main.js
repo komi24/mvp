@@ -1,11 +1,15 @@
 angular.module('cliapp',['ui.bootstrap','ngCookies'])
         .controller('boardController', function($scope, $http, $modal, $cookieStore) {
             $scope.id= id;//id du restaurant
-            $scope.user=$cookieStore.get('user');
-            $scope.user= ($scope.user == null) ? [] : $scope.user;
+            $scope.user=$cookieStore.get('user');//User ID
+            $scope.user= ($scope.user == null) ? 0 : $scope.user;
             $scope.panier=$cookieStore.get('panier');
             $scope.panier= ($scope.panier == null) ? [] : $scope.panier;
-            $scope.sections = [];  
+            $scope.sections = []; 
+            $scope.bugres = function(){
+                $scope.user = 0;
+                $scope.panier = [];
+            }
             $scope.openPanier = function(){
                 var modalInstance = $modal.open({
                     templateUrl: 'myPanierContent.html',
@@ -22,10 +26,11 @@ angular.module('cliapp',['ui.bootstrap','ngCookies'])
                     if (nouveauPanier.hasOwnProperty('contentres')){
                         $http.post("/ebene/web/app_dev.php/mvp_actionboard/commande",
                             { 'id': $scope.id, 'user': $scope.user, 'content' : nouveauPanier })
-                                    .success(function(){
-                                        nouveauPanier = [];
-                                        $scope.panier = nouveauPanier;
+                                    .success(function(response){
+                                        $scope.user = response.user;
+                                        $scope.panier = [];
                                         $cookieStore.put('panier', $scope.panier);
+                                        $cookieStore.put('user', $scope.user);
                                     });
                         
                     }
@@ -94,8 +99,8 @@ angular.module('cliapp').controller('PanierInstanceCtrl', function ($scope, $mod
   };
 
   $scope.commande = function () {//post et supprimer panier
-    if($scope.username != ''){
-        $scope.panier = {username: $scope.username, contentres: $scope.tmppanier};
+    if(this.form1.$valid){
+        $scope.panier = {username: this.form1.username.$viewValue, contentres: $scope.tmppanier};
         $modalInstance.close($scope.panier);
     }else{
         $scope.askName=true;

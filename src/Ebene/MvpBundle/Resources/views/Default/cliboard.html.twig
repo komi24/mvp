@@ -66,39 +66,40 @@
                               <div class="modal-body">
                               <div class="checkbox" ng-repeat="secondaire in article.listesecondaires">
                               <label>
-                                <input type="checkbox"/> {{ '{{ secondaire.nom }}' }}
+                                <input type="checkbox" ng-model="secondaire.asked"/> {{ '{{ secondaire.nom }}' }}
                               </label>
                               </div>
                               </div>
                               <div class="modal-footer">
-                              <button class="btn btn-primary" ng-click="ok()">Ajouter</button>
-                              <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+                              <button class="btn btn-sm btn-primary" ng-click="ok()">Ajouter</button>
+                              <button class="btn btn-sm btn-warning" ng-click="cancel()">Annuler</button>
                               </div>
                           </script>
                           <script type="text/ng-template" id="myPanierContent.html">
                               <div class="modal-header">
-                              <h2 class="modal-title">Votre Panier</h2>
+                              <h3 class="modal-title">Votre Panier</h3>
                               </div>
-                              <div class="modal-body">
-                              <form novalidate class="simple-form">
-                                Nom: <input type="text" ng-model="$scope.username" >
+                              <div class="modal-body" id="modscroll">
+                              <form novalidate name="form1" class="simple-form">
+                                Nom: <input type="text" name="username" ng-model="username" required>
                               </form>
-                              <div class="well" ng-repeat="article in tmppanier">
+                              <div class="well well-sm" ng-repeat="article in tmppanier">
                                 <h4> {{ '{{ article.nom }}' }} </h4>
-                                <button class="btn btn-warning" ng-click="erase($index)">Suprimer</button>
+                                <button class="btn btn-sm btn-warning" ng-click="erase($index)">Suprimer</button>
                               </div>
                               </div>
-                              <alert type="warning" ng-show="askName">Nom incorrect ou absent</alert>
+                              <div class="alert alert-dismissible alert-danger" ng-show="askName"><strong>Nom incorrect ou absent</strong></div>
                               <div class="modal-footer">
-                              <button class="btn btn-success" ng-click="commande()">Commander</button>
-                              <button class="btn btn-primary" ng-click="ok()">Valider</button>
-                              <button class="btn btn-warning" ng-click="cancel()">Retour</button>
+                              <button class="btn btn-sm btn-success" ng-click="commande()">Commander</button>
+                              <button class="btn btn-sm btn-primary" ng-click="ok()">Valider</button>
+                              <button class="btn btn-sm btn-warning" ng-click="cancel()">Retour</button>
                               </div>
                           </script>
                       </div>
                   </div> {# repeat articles #}
               </div>
           </div> {# repeat sections #}
+              <div class="btn btn-danger" ng-click="bugres()"> Resoudre bug </div>
       </div>
   </body>
 </html>

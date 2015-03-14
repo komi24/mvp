@@ -12,6 +12,11 @@
     background: rgba(255,255,255,0.8);
 }
 
+#modscroll {
+    max-height: 60%;
+    overflow-y: scroll;
+}
+
 #maincontainer {
     margin-top: 20%;
 }

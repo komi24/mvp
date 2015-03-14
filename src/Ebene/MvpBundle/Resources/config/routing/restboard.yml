@@ -1,0 +1,9 @@
+mvp_restboard:
+    path: /liste
+    defaults: { _controller: "EbeneMvpBundle:Restboard:index" }
+mvp_restprec:
+    path: /prec
+    defaults: { _controller: "EbeneMvpBundle:Restboard:prec" }
+mvp_restsuiv:
+    path: /suiv
+    defaults: { _controller: "EbeneMvpBundle:Restboard:suiv" }

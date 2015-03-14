@@ -27,10 +27,10 @@ class DefaultController extends Controller
 
     public function restboardAction($id)
     {
-        //$em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
  
-        //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
-        $titre = "KebabResto";//$entity->getNom();
+        $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
+        $titre = ($entity == NULL) ? "Restaurant" : $entity->getNom();
  
         return $this->render('EbeneMvpBundle:Default:restboard.html.twig', 
                 array(
