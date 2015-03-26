@@ -20,7 +20,7 @@ class ActionboardController extends Controller
         }
         if($params['type'] == 'sections')
         {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($params['id']);
 
             $reponse = new JsonResponse();
@@ -49,7 +49,7 @@ class ActionboardController extends Controller
 
         if($entity == NULL) return $res;
         
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('EbeneMvpBundle:Section')->find($entity->getId());//$params[id]);
 
         foreach ($entity->getArticles()->toArray() as $cur) {
@@ -67,7 +67,7 @@ class ActionboardController extends Controller
     public function getSecondaires($entity) {
         $res = array();
         if($entity == NULL) return $res;
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('EbeneMvpBundle:Article')->find($entity->getId());//$params[id]);
 
         foreach ($entity->getSecondaires() as $cur) {
@@ -83,7 +83,7 @@ class ActionboardController extends Controller
     
     public function cliboardAction($id)
     {
-        //$em = $this->getDoctrine()->getEntityManager();
+        //$em = $this->getDoctrine()->getManager();
  
         //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
         $titre = "KebabResto";//$entity->getNom();
@@ -97,7 +97,7 @@ class ActionboardController extends Controller
 
     public function restboardAction($id)
     {
-        //$em = $this->getDoctrine()->getEntityManager();
+        //$em = $this->getDoctrine()->getManager();
  
         //$entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
         $titre = "KebabResto";//$entity->getNom();

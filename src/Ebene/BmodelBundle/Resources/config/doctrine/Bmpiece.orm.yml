@@ -1,0 +1,27 @@
+Ebene\BmodelBundle\Entity\Bmpiece:
+    type: entity
+    table: bmpiece
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        description:
+            type: text
+    manyToOne:
+        section:
+            targetEntity: Bmsection
+            inversedBy: pieces
+            joinColumn:
+                name: section_id
+                referencedColumnName: id
+    oneToMany:
+        entrants:
+            targetEntity: Bmlien
+            mappedBy: sortie
+        sortants:
+            targetEntity: Bmlien
+            mappedBy: entree            

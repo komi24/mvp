@@ -25,7 +25,7 @@ class NewcommandeController extends Controller
         if($params['user'] == 0)
         {
             $logger->info('ok');
-            /*$em = $this->getDoctrine()->getEntityManager();
+            /*$em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($params['id']);
             $reponse = new JsonResponse();
             $reponse->setData($this->getSections($entity));*/
@@ -45,7 +45,7 @@ class NewcommandeController extends Controller
     public function newCommande($content) {
         $logger = $this->get('logger');
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         // Trouver le client
         $cli = $em->getRepository('EbeneMvpBundle:Client')->find($content['user']);
         $cli->setNom($content['content']['username']);
@@ -94,7 +94,7 @@ class NewcommandeController extends Controller
     }
     
     public function newUser($nom) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $cli = new Client();
         $cli->setNom($nom);
         $cli->setMdp("0000");

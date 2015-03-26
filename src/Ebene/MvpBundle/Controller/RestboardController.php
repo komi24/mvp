@@ -19,7 +19,7 @@ class RestboardController extends Controller
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('EbeneMvpBundle:Commande')->find($params['id']);
         $logger = $this->get('logger');
         $logger->info("rohlala");
@@ -49,7 +49,7 @@ class RestboardController extends Controller
         if (!empty($content)) {
             $params = json_decode($content, true); // 2nd param to get as array
         }
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('EbeneMvpBundle:Commande')->find($params['id']);
         if($commande->getDatefin() == null){
             if($commande->getDatepret() == null){
@@ -77,7 +77,7 @@ class RestboardController extends Controller
             $params = json_decode($content, true); // 2nd param to get as array
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $commandes = $em->getRepository('EbeneMvpBundle:Commande')->findBy(
                 array( "restaurant" => $params['id']),
                 array("datecom" => "DESC"),50);

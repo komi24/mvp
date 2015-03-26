@@ -13,7 +13,7 @@ class DefaultController extends Controller
     
     public function cliboardAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
  
         $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
         $titre = ($entity == NULL) ? "Restaurant" : $entity->getNom();
@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
     public function restboardAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
  
         $entity = $em->getRepository('EbeneMvpBundle:Restaurant')->find($id);
         $titre = ($entity == NULL) ? "Restaurant" : $entity->getNom();

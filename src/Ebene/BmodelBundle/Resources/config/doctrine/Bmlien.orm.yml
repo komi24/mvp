@@ -1,0 +1,26 @@
+Ebene\BmodelBundle\Entity\Bmlien:
+    type: entity
+    table: bmlien
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+        description:
+            type: text
+    manyToOne:
+        entree:
+            targetEntity: Bmlien
+            inversedBy: sortants
+            joinColumn:
+                name: entree_id
+                referencedColumnName: id
+        sortie:
+            targetEntity: Bmlien
+            inversedBy: entrants
+            joinColumn:
+                name: sortie_id
+                referencedColumnName: id

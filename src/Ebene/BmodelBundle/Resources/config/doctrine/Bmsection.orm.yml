@@ -1,0 +1,15 @@
+Ebene\BmodelBundle\Entity\Bmsection:
+    type: entity
+    table: bmsection
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        nom:
+            type: string
+            length: 255
+    oneToMany:
+        pieces:
+            targetEntity: Bmpiece
+            mappedBy: section

@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% stylesheets '@EbeneBmodelBundle/Resources/public/css/board/bootstrap.css'
+        '@EbeneBmodelBundle/Resources/public/css/board/main.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+        {% javascripts '@EbeneBmodelBundle/Resources/public/js/board/main.js'%}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+        <title>Ebene BM</title>
+    </head>
+    <body ng-app="bmapp" ng-controller="bmController" >
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header col-xs-6">
+                    <a class="navbar-brand" href="{{ path('ebene_bmodel_home') }}">Ebene</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid" id="maincontainer" >
+            <div class="jumbotron">
+                <h1> Ebene </h1>
+                <h4>Environnements numériques</h4>
+            </div>
+            <div>
+                <div class="col-sm-2">
+                    <div class="well">
+                        <h4>Key partners </h4>
+                    </div>
+                    <div ng-repeat="element in pieces | filtre : 1 ">
+                        <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                            <div class="panel-heading" ng-click="clickon(element.id)">
+                                <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="well">
+                        <h4>Key activities </h4>
+                    </div>
+                    <div  ng-repeat="element in pieces | filtre : 2 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="well">
+                        <h4>Key resources </h4>
+                    </div>
+                    <div  ng-repeat="element in pieces | filtre : 6 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Value propositions </h4>
+                    </div>
+                    <div ng-repeat="element in pieces | filtre : 3 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="well">
+                        <h4>Customer relationship </h4>
+                    </div>
+                    <div ng-repeat="element in pieces | filtre : 4 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="well">
+                        <h4>Channels </h4>
+                    </div>
+                    <div ng-repeat="element in pieces | filtre : 7 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>Customer segments </h4>
+                    </div>
+                    <div ng-repeat="element in pieces | filtre : 5 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h4>Cost structure</h4>
+                    </div>
+                    <div  ng-repeat="element in pieces | filtre : 8 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h4>Revenue streams</h4>
+                    </div>
+                    <div  ng-repeat="element in pieces | filtre : 9 ">
+                    <div class="panel panel-{{'{{element | focus : focuson : liens }}'}}">
+                        <div class="panel-heading" ng-click="clickon(element.id)">
+                            <h3 class="panel-title">{{'{{element.nom}}'}}</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {#<div ng-repeat="commande in commandes" class="panel panel-{{'{{ commande | etat : affichage }}'}}" ng-show=' {{ ' {{commande | etat : \"visi\" }} ' }} '>
+                <div class="panel-heading" ng-click="commande.showPannel = ! commande.showPannel"> 
+                    <h3 class="panel-title" >Commande {{'{{ commande.id }}'}} pour {{'{{ commande.client }}'}} {{'{{commande | etat : \'etat\'}}'}}</h3>
+                </div>
+                <div class="panel-body"> {# ng-show="commande.showPannel">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn btn-info" ng-click='prec(commande.id)'>Prec</div>
+                        <div class="btn btn-success" ng-click='suiv(commande.id)'>Suiv</div>
+                    </div>
+                    <div ng-repeat="article in commande.articles">
+                        <div class="well"><h3 class="panel-title" ng-bind="article.nom"> </h3></div>
+                            <div ng-repeat="secondaire in article.secondaires">
+                                <h4>{{'{{secondaire.nom}}'}}</h4>
+                            </div>
+                    </div> {# repeat articles 
+                </div>
+            </div> {# repeat sections #}
+        </div>
+    </body>
+</html>
